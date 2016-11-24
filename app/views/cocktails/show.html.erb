@@ -1,0 +1,28 @@
+<h1>Cocktails#show</h1>
+<p>Find me in app/views/cocktails/show.html.erb</p>
+<% content_for(:name) do %>
+  <%= @cocktail.name %>
+<% end %>
+
+<p>
+  <strong>Name:</strong>
+  <%= @cocktail.name %>
+</p>
+
+<ul>
+  <% @cocktail.doses.each do |dose| %>
+    <li><%= dose.ingredient.name %> - <%= dose.description %></li>
+  <% end %>
+</ul>
+
+<%= link_to 'Back', cocktails_path, class: "btn btn-primary" %>
+<%= link_to 'Add a dose', new_cocktail_dose_path(@cocktail), class: "btn btn-primary" %>
+
+
+<% content_for(:after_js) do %>
+<script>
+  $(document).ready(function(){
+    alert("<%= @cocktail.name %>");
+  })
+</script>
+<% end %>
